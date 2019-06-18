@@ -5,5 +5,20 @@
   <%= @category.name %>
 </p>
 
+<%= form_with(model: [ @category, @product ]) do |form| %>
+  <%= form.hidden_field :category_id, value: @category.id %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.number_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
