@@ -4,13 +4,14 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.joins(:products).group(:category)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
     @product = Product.new
+    @products = Product.where(category_id: params[:id])
   end
 
   # GET /categories/new
@@ -37,6 +38,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
